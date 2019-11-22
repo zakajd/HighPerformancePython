@@ -14,13 +14,15 @@ Plot classical bifurcation map. $x_{n+1} = r * x_n * (1 - x_n)$ where $x_0 = ran
 |    | Plot speedup versus number of processors graph | 2 |
 
 
-**Task 2**
+**Task 2**: Julia set
 
 **Task 3**
 
-**Task 4**
+**Task 4**:  Spectrogram
 
-**Task 5**
+**Task 5**: Matmul
+
+Measure time of different matrix multiplication functions
 
 **Task 6**: Advanced Spectrogram
 
