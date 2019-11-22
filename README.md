@@ -2,6 +2,7 @@
 Solutions of tasks in High Performance Python Lab course at Skoltech
 
 **Task 1**: Bifurcation map
+
 Plot classical bifurcation map. $x_{n+1} = r * x_n * (1 - x_n)$ where $x_0 = rand(0, 1)$, $r$ - const.
 
 | | Criteria name  | Max score |
@@ -22,6 +23,7 @@ Plot classical bifurcation map. $x_{n+1} = r * x_n * (1 - x_n)$ where $x_0 = ran
 **Task 5**
 
 **Task 6**: Advanced Spectrogram
+
 Use Jupyter notebook templates to make something mre interesting
 
 | | Criteria name  | Max score |
@@ -31,9 +33,9 @@ Use Jupyter notebook templates to make something mre interesting
 |T6.3| Vary kappa on [0.001, 10], kappa=exp(theta), theta=linspace(ln(0.001), ln(10), 100 steps), create GIFs| 1 |
 |T6.3| Explain, why specgram is different| 1 |
 |T6.4| PVary n_timestamps_given=4090, 4091, ...,5000 and plot results of computational time on the graph. | 2 |
-|T6.4| Explain why cProfiler gives different results. What is the bottleneck in this program? How can you improve the program? | 2 |
+| | Explain why cProfiler gives different results. What is the bottleneck in this program? How can you improve the program? | 2 |
 |T6.5| Parallel STFT | 2 |	
-|T6.5| Plot speedup versus number of processors graph |	2 |
+| | Plot speedup versus number of processors graph |	2 |
 
 **Task 7**: Study an integral
 
@@ -55,6 +57,7 @@ Use Jupyter notebook templates to make something mre interesting
 
 
 **Task 9**: Conway's Game of Life
+
 | | Criteria name  | Max score |
 | -- | ------------- | ------------- |
 |T9.1| Sequential implementation is provided | 1 |
@@ -66,6 +69,7 @@ Use Jupyter notebook templates to make something mre interesting
 
 
 **Bonus task**: 3D Schelling's model
+
 Implement Schelling's model in 3D space. Adding one more axis implies that there are more neighbors. The rest of the rules stays the same as for the 2D case.
 
 The difficult part is visualization. The task is to use python (Paraview with python is also acceptable) to visualize animation in 3D. You can use any techniques to visualize 3D data. You can try to come up with a technique yourself, or you can try to google. The main task is to make the visualization understandable. Think of it that way: you need to make it so that anyone can understand what is going on if the visualization was in your presentation and you gave it to a scientific audience, but they know nothing about your research area.
