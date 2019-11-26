@@ -41,6 +41,12 @@ Use Jupyter notebook templates to make something mre interesting
 
 **Task 7**: Study an integral
 
+- Compute an integral using the trapezoid rule
+- Split the job between processes and use Reduce collective communication
+- Check the accuracy when taking more nodes (i.e. smaller step)
+- Check the speedup when taking more processes
+![integral](https://github.com/zakajd/HighPerformancePython/blob/master/imgs/integral.png)
+
 | | Criteria name  | Max score |
 | -- | ------------- | ------------- |
 |T7.1| Analytical computation of the integral is given | 1 |
@@ -51,6 +57,10 @@ Use Jupyter notebook templates to make something mre interesting
 
 **Task 8**: Columnwise shifted pictures
 
+- Take a picture
+- Split the picture columns between processes
+- Shift the columns cyclically
+
 | | Criteria name  | Max score |
 | -- | ------------- | ------------- |
 |T8.1| We can arbitrarily choose the number of MPI processes that we want to launch and it does not depend on the width of the picture | 2 |
@@ -59,6 +69,9 @@ Use Jupyter notebook templates to make something mre interesting
 
 
 **Task 9**: Conway's Game of Life
+
+Parallelize using “ghost” cells (red)
+Init condition -- Gosper’s glider gun:https://tinyurl.com/yx5hy26m
 
 | | Criteria name  | Max score |
 | -- | ------------- | ------------- |
