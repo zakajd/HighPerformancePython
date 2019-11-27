@@ -1,5 +1,7 @@
 """
 Show bifurcation maps defined with parameters
+Usage:
+mpirun -n 3 python bifurcation.py
 """
 
 import random
@@ -7,6 +9,7 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from mpi4py import MPI
 
 def bifurcation(x, r):
     return r * x * (1 - x)
@@ -37,9 +40,9 @@ def plot_bifurcation(r_values, result, name=None, params=None, save_fig=False, )
         fig.savefig(name)   # save the figure to file
 #     plt.close(fig)    # close the figure window
     
-def main():
-    r_val, bf = bifurcation_map(args.R, args.steps, args.n, args.m)
-    plot_bifurcation(r_val, bf, args.name, (args.n, args.m, args.R), save_fig=True)
+def main(R, n, steps, m, name):
+    r_val, bf = bifurcation_map(R, steps, n, m)
+    plot_bifurcation(r_val, bf, name, (n, m, R), save_fig=True)
     
 
     
@@ -56,5 +59,7 @@ if __name__ == "__main__":
                         help="save last m values")
     parser.add_argument("-name", type=str, default="bifurcation",
                         help="File name")
+    # parser.add_argument("-proc", type=int, default=2,
+    #                     help="Number of processes to use")
     args = parser.parse_args()
-    main()
+    main(**args)
