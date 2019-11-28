@@ -12,53 +12,61 @@ except FileExistsError as err:
     pass
 
 
-# Function for which we compute integral
 def f(x):
-    return 1 / x
+    """ Function to integrate
+    Args:
+        x: value to count
+    """
+    return 1 / np.sqrt(1 + x ** 2)
 
-# Analytical integral
 def g(x):
-    return np.log(x)
+    """ Analytical expression of f(x)
+    Args:
+        x: func value
+    """
+    return np.log(x + np.sqrt(1 + x ** 2))
 
-def integrate(f, g=None, limits=(1, 2), nodes=100, rank=None, size=None, comm=None):
+# from functools import reduce
+
+def integrate(f, limits=(5, 7), num_steps=100000):
     """Compute function integral by using trapezoid rule
     Args:
         f: function to integrate
         g: analytical integral, for self check and error estimation
         limits: (a, b)
-        nodes: # of points to split the limit
+        steps: # of points to split the limit
     """
-    all_nodes = np.linspace(limits[0], limits[1], num=nodes)
-    left, right = rank * nodes // size, (rank + 1) * nodes // size
-    individual_nodes = list(all_nodes[left:right]) # convert to Python object
-    if rank == size - 1:
-        individual_nodes = all_nodes[left:] # leftmost process take the rest
-    # print(f'My rank: {rank}, world size: {size}, {individual_nodes}')
-    comm.Barrier()
-    partial_result = [(x, f(x)) for x in individual_nodes]
-    
-    final_result = comm.gather(partial_result, root=0)
+    steps = np.linspace(limits[0], limits[1], num=num_steps, endpoint=True)
+    step_size = (limits[1] - limits[0]) / num_steps
+    func_values = [f(x) for x in steps]
+    result = (sum(func_values) * 2 - func_values[0] - func_values[1]) * 0.5 * step_size
+    return result
 
-    if rank: # rank != 0
-        assert final_result is None
 
-    return final_result
+def main(parallel=False):
+    if parallel:
+        comm = MPI.COMM_WORLD
+        rank = comm.Get_rank()
+        size = comm.Get_size()
+        
+        all_nodes = np.linspace(5, 7, num=size + 1)
+        S_d = integrate(f, limits=all_nodes[rank:rank+2], num_steps=100000 // size)
+        comm.Barrier()
 
-def main(args):
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-    size = comm.Get_size()
-    final_result = integrate(f, g=None, limits=(1, 10), nodes=10, rank=rank, size=size, comm=comm)
-    if rank == 0:
-        x = [t[0] for t in final_result]
-        y = [t[1] for t in final_result]
-        plt.plot(y, x)
-        plt.savefig('imgs/integral.png')
-        # print(final_result)
+        S_d = comm.gather(S_d, root=0)
+
+        if rank == 0:
+#             print(sum(S_d))
+            return sum(S_d)
+    else:
+        S_d = integrate(f, limits=(5, 7), num_steps=100000)
+#         print(S_d)
+        return S_d
+        
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Task 7")
-    parser.add_argument("-p",  help="# of proccesses")
+    parser.add_argument("-parallel",  help="0 - not parallel, 1 - parallel", type=bool)
     args = parser.parse_args()
-    main(args)
+    main(args.parallel)
 
