@@ -16,7 +16,24 @@ Plot classical bifurcation map. $x_{n+1} = r * x_n * (1 - x_n)$ where $x_0 = ran
 
 **Task 2**: Julia set
 
-**Task 3**
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T2.1| Generate black and white image  | 1 |
+|T2.2| Use different color for bifurcation points | 1 |
+|T2.3| Mandelbrot set  | 2 |
+|T2.4| Plot some figures for c = exp(i * alpha), alpha in range(0, 2pi) | 2 |
+|T2.5| Plot gif of figures for c = exp(i * alpha), alpha = range(0, 2pi) | 2 |
+
+
+**Task 3** Schelling model
+
+
+Ganeral: figsize = (14, 11), fontsize = 20.
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T3.1| 9 gifs for 9 values of R  | 1 |
+|T3.2| Plot # of moving cells vs times for 9 values of R | 1 |
 
 **Task 4**:  Spectrogram
 
@@ -82,6 +99,63 @@ Init condition -- Gosper’s glider gun:https://tinyurl.com/yx5hy26m
 |T9.5| At least two more initial conditions are modelled | 2 |
 |T9.6| Plot graph living cells / time for 3 different initial conditions | 2 |	
 
+**Task 10**: Saxpy
+
+Use Saxpy
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T10.1| Explain difference between cupy and numpy. CPU -> GPU data transfer using CuPy | 1 |
+|T10.2| Function saxpy that runs on GPU using cupy is provided| 1 |
+|T10.3| Graph (OX - size of arrays, OY - computation time) is given. Plot numpy and cupy implementations | 2 |
+
+**Task 11**: CuPy-based Bifurcation map
+
+Bifurcation map (again), now with use of CuPy
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T11.1| Bifurcation map is performed using cupy arrays | 2 |
+|T11.2| Cupy bifurcation map implementation is profiled | 2 |
+|T11.3| Graph (OX - number total iterations, OY - computation time) is given. Plot cpu, mpi and cupy implementations | 2 |
+
+**Task 12**: Histogram
+
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T12.1| Function from the jupyter notebook is plotted with suggested number of points	 | 1 |
+|T12.2| Histogram is plotted | 2 |
+|T12.3| Computation time of cp.sum() and np.sum() are provided (only those two functions, no need to include plot drawing time into it | 2 |
+
+**Task 13** Image Blur
+
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T13.1| Before and after pictures are given (any 100x100 image)	 | 1 |
+|T13.2| Measure CuPy implementation time | 2 |
+|T13.3| Measure NumPy implementation time | 2 |
+
+**Task 14** Jitted Mandelbrot
+
+Again Mandelbrot, now using JIT optimizer
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T14.1| Profile Mandelbrot code | 1 |
+|T14.2| Numba is used | 1 |
+|T14.3| Acceleration using numba achieved | 1 |
+|T14.4|  Measure computation time Time(# iterations), two plots - numba & regular version | 1 |
+
+**Task 15** Jitted N-body problem
+
+
+| | Criteria name  | Max score |
+| -- | ------------- | ------------- |
+|T15.1| Jitted function "distance" is created (along the lines of "create_n_random_particles" function, which is given in jupyter file on Canvas) | 1 |
+|T15.2| jitted function "distance" is created (along the lines of "create_n_random_particles" function, which is given in jupyter file on Canvass) | 1 |
+|T15.3| Acceleration using numba achieved | 1 |
 
 **Bonus task**: 3D Schelling's model
 
